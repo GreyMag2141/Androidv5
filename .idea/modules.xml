@@ -4,8 +4,10 @@
     <modules>
       <module fileurl="file://D:\Study\Android\Android-master\Android.iml" filepath="D:\Study\Android\Android-master\Android.iml" />
       <module fileurl="file://C:\Android\New\new\Android-master-master\Android-master.iml" filepath="C:\Android\New\new\Android-master-master\Android-master.iml" />
-      <module fileurl="file://$PROJECT_DIR$/Android-master-master.iml" filepath="$PROJECT_DIR$/Android-master-master.iml" />
+      <module fileurl="file://C:\AndroidStudioProjects\DriverNoteGamma\Androidv5\Android-master-master.iml" filepath="C:\AndroidStudioProjects\DriverNoteGamma\Androidv5\Android-master-master.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Androidv5.iml" filepath="$PROJECT_DIR$/Androidv5.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://C:\AndroidStudioProjects\DriverNoteGamma\Androidv5\app\app.iml" filepath="C:\AndroidStudioProjects\DriverNoteGamma\Androidv5\app\app.iml" />
       <module fileurl="file://C:\Android\New\new\Android-master-master\app\app.iml" filepath="C:\Android\New\new\Android-master-master\app\app.iml" />
     </modules>
   </component>
