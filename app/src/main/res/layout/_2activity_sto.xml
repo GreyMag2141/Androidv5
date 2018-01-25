@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@drawable/sto"
+    android:background="@drawable/roadsto"
     tools:context="com.example.vitalya.myapplication._2CtoActivity">
     <TextView
         android:id="@+id/HeaderAdd"

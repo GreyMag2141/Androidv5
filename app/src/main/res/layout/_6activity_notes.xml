@@ -25,27 +25,30 @@
         android:layout_height="wrap_content"
         android:layout_weight="0.8"
         android:orientation="horizontal">
-        android:orientation="horizontal"
+
 
         <LinearLayout
             android:layout_width="200dp"
             android:layout_height="200dp"
             android:orientation="vertical">
-            android:orientation="vertical"
 
+<EditText
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:hint="Что хотите записать?"/>
             <TextView
                 android:id="@+id/Key"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Ключ" />
+                android:layout_weight="1"/>
+                //android:text="Ключ"
 
             <TextView
                 android:id="@+id/Key1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Ключ1" />
+                android:layout_weight="1"/>
+                //android:text="Ключ1"
 
 
 
@@ -60,15 +63,15 @@
                 android:id="@+id/Value"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Значение" />
+                android:layout_weight="1"/>
+                //android:text="Значение"
 
             <TextView
                 android:id="@+id/Value1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Ключ2" />
+                android:layout_weight="1"/>
+                //android:text="Ключ2"
 
 
         </LinearLayout>

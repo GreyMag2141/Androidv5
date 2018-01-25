@@ -96,4 +96,12 @@
         android:layout_height="wrap_content"
         android:text="Обнулить" />
 
+    <TextView
+        android:id="@+id/vers"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Версия: 0.06"
+        android:textAlignment="center" />
 </LinearLayout>
