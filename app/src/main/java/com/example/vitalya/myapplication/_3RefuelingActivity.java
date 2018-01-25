@@ -23,16 +23,18 @@ public class _3RefuelingActivity extends AppCompatActivity implements View.OnCli
     EditText editTextL;
     EditText editTextR;
     EditText editTextKm;
+    EditText editTextKm2;
+    EditText editTextCalendar;
     TextView textViewRub;
     TextView textViewKml;
     Button buttonSave;
-    Button buttonKml;
     Button buttonMainMenu;
 
     float num1 = 0;
     float num2 = 0;
+    float num3 = 0;
     float result = 0;
-    //для записи в файл
+    float result1 = 0;
 
     //Создаем переменные для вызова календаря
     private EditText callcalendar;
@@ -44,8 +46,7 @@ public class _3RefuelingActivity extends AppCompatActivity implements View.OnCli
         super.onCreate( savedInstanceState );
         setContentView( R.layout._3activity_refueling);
 
-        //Указываем формат даты
-        dateFormatter=new SimpleDateFormat("dd-MM-yyyy", Locale.US);
+        dateFormatter=new SimpleDateFormat("dd-MM-yyyy", Locale.US); //Указываем формат даты
         //Создаем методы для запуска календаря
         findViewsByID();
         setDateTimeField();
@@ -53,69 +54,74 @@ public class _3RefuelingActivity extends AppCompatActivity implements View.OnCli
         editTextL = findViewById( R.id.editTextL );
         editTextR = findViewById( R.id.editTextR );
         editTextKm = findViewById( R.id.editTextKm );
+        editTextKm2 = findViewById( R.id.editTextKm2 );
+        editTextCalendar = findViewById( R.id.editTextCalendar );
         textViewRub = findViewById( R.id.textViewRub );
         textViewKml = findViewById( R.id.textViewKml );
         buttonSave = findViewById( R.id.buttonSave );
-        buttonKml = findViewById( R.id.buttonKml );
 
-buttonKml.setOnClickListener( new View.OnClickListener() {
-    @Override
-    public void onClick(View view) {
-//        http://blog.harrix.org/article/6706
-//Объявим числовые переменные
-        double a,b,c;
-//Считаем с editText и editText2 текстовые значения
-        String S1 = editTextKm.getText().toString();
-        String S2 = editTextL.getText().toString();
-//Преобразуем текстовые переменные в числовые значения
-        a = Double.parseDouble(S1);
-        b = Double.parseDouble(S2);
-//Проведем с числовыми переменными нужные действия
-        c = (b/a)*100;
-//Преобразуем ответ в число
-        String S = Double.toString(c);
-//Выведем текст в textView
-        textViewKml.setText(S);
-    }
-} );
-        buttonSave.setOnClickListener( new View.OnClickListener() {
+
+
+        buttonSave.setOnClickListener( new View.OnClickListener() {  //Кнопка для подсчета стоимости
             @Override
             public void onClick(View view) {
-
                 //Проверяем если в поля "Заправлено" и "Цена за 1 литр" введены какие-либо значения и если нет, то выдаем предупреждения
-                //Переменная warning1 вводится для проверки поля "Заправлено"
-                String warning1=editTextL.getText().toString();
-                //Переменная warning2 вводится для проверки поля "Цена за 1 литр"
-                String warning2=editTextR.getText().toString();
-                String msgtext="Введите значение";
+                String warning1=editTextCalendar.getText().toString();//Переменная warning1 вводится для проверки поля "Даты"
+                String warning2=editTextKm2.getText().toString(); //Переменная warning2 вводится для проверки поля "Общий пробег"
+                String warning3=editTextKm.getText().toString(); //Переменная warning3 вводится для проверки поля "Пробег с последней заправки"
+                String warning4=editTextL.getText().toString();  //Переменная warning4 вводится для проверки поля "Заправлено"
+                String warning5=editTextR.getText().toString();  //Переменная warning5 вводится для проверки поля "Цена за 1 литр"
+
+                String msgtext1="Введите дату";
                 if(TextUtils.isEmpty(warning1)){
                     //Собственно само сообщение
-                    editTextL.setError(msgtext);
+                    editTextCalendar.setError(msgtext1);
                     return;
                 }
+                String msgtext2="Введите общий пробег";
                 if(TextUtils.isEmpty(warning2)){
-                    editTextR.setError(msgtext);
+                    editTextKm2.setError(msgtext2);
                     return;
                 }
+                String msgtext3="Введите пробег с последней заправки";
+                if(TextUtils.isEmpty(warning3)) {
+                    editTextKm.setError( msgtext3);
+                    return;
+                }
+                String msgtext4="Введите сколько заправлено";
+                if(TextUtils.isEmpty(warning4)) {
+                    editTextL.setError( msgtext4);
+                    return;
+                }
+                String msgtext5="Введите цену за 1 литр";
+                if(TextUtils.isEmpty(warning5)) {
+                    editTextR.setError( msgtext5);
+                    return;
+                }
+                //        http://blog.harrix.org/article/6706
+
                 // читаем EditText и заполняем переменные числами
-                num1 = Float.parseFloat(editTextL.getText().toString());
-                num2 = Float.parseFloat(editTextR.getText().toString());
+                num1 = Float.parseFloat(editTextL.getText().toString()); //Литры
+                num2 = Float.parseFloat(editTextR.getText().toString()); //Литры
+                num3 = Float.parseFloat(editTextKm.getText().toString()); //км
+//                num4 = Float.parseFloat(editTextL.getText().toString());//Рубли
+
                 result = num1 * num2;
+                result1 = (num1/num3)*100;
 
-                //Вывод на экран
+                 textViewKml.setText(result1+ " л./100км.");//Вывод на экран расхода
+                 textViewRub.setText(result + " руб. "); //Вывод на экран стоимости
 
-                textViewRub.setText(result + " руб. ");
                 //Запись в файл
                 try {
                     FileOutputStream fileout=openFileOutput("mytextfile.txt", MODE_APPEND);
 //                    PrintStream printStream=new PrintStream(fileout);
 //                    printStream.print(textViewRub.getText().toString()+"\n");
 //                    fileout.close();
-
                     OutputStreamWriter outputWriter=new OutputStreamWriter(fileout);
                     outputWriter.write(textViewRub.getText().toString()+"\n");
+                    outputWriter.write(textViewKml.getText().toString()+"\n");
                     outputWriter.close();
-
 
                     //display file saved message
                     Toast.makeText(getBaseContext(), "Файл сохранен!",
@@ -136,10 +142,6 @@ buttonKml.setOnClickListener( new View.OnClickListener() {
         // write text to file
         // add-write text into file
     }
-
-
-
-
     //Описываем методы
     private void findViewsByID(){
         callcalendar=(EditText) findViewById(R.id.editTextCalendar);
@@ -157,16 +159,13 @@ buttonKml.setOnClickListener( new View.OnClickListener() {
                 callcalendar.setText(dateFormatter.format(newDate.getTime()));
             }
         },newCalendar.get(Calendar.YEAR), newCalendar.get(Calendar.MONTH), newCalendar.get(Calendar.DAY_OF_MONTH));
-
     }
-
     @Override
     public void onClick(View view) {
         if(view == callcalendar) {
             datepicker.show();
         }
     }
-
 }
 
 
